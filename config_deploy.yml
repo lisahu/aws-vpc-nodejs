@@ -1,0 +1,18 @@
+---
+- hosts: dev
+  become: yes
+  remote_user: ec2-user
+  become_user: ec2-user
+  vars:
+    src_config_file: /home/ec2-user/workspace/nodejs_project/devops-hello-world/config.json
+    dest_config_file: /home/ec2-user/devops-hello-world/config.json
+  tasks:
+  - name: deploy config.json to dev so that I can test result of configure in this host
+    copy:
+      src: "{{ src_config_file }}"
+      dest: "{{ dest_config_file }}"
+      force: yes
+    tags: dev_deploy
+  - name: deploy to all ASG-instance behind ELB
+    command: aws s3 cp {{ dest_config_file }} s3://{{ s3code }}/
+    tags: global_deploy
