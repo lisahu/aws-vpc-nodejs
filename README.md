@@ -2,7 +2,7 @@
 In this project, I set up a nodejs web server system using Terraform and Ansible.
 
 First, I build an AWS Virtual Private Cloud (VPC) using Terraform. see main.tf.
-This VPC uses EC2s as nodejs webservers. Besides, it contains subnets, ELB,
+This VPC uses EC2s as nodejs webservers. Besides, it contains IAM, subnets, ELB,
 Auto-Scaling Group (ASG), Launch Configuration, AMI, S3, securityGroup, ACLs,
 and other AWS services.
 
